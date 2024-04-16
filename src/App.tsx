@@ -1,7 +1,7 @@
-import React from 'react'
-import AppRouter from './components/AppRouter/AppRouter'
-import Navbar from './components/Navbar/Navbar'
-import { Layout } from 'antd'
+import React from 'react';
+import AppRouter from './components/AppRouter/AppRouter';
+import Navbar from './components/Navbar/Navbar';
+import { Layout } from 'antd';
 
 function App() {
     return (
@@ -11,7 +11,7 @@ function App() {
                 <AppRouter />
             </Layout.Content>
         </Layout>
-    )
+    );
 }
 
-export default App
+export default App;
