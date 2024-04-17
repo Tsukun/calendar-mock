@@ -1,14 +1,15 @@
-import React from 'react'
-import { Navigate, Route, Routes } from 'react-router'
+import { Navigate, Route, Routes } from 'react-router';
 import {
     PRIVATE_PATH,
     PUBLIC_PATH,
     privateRoutes,
     publicRoutes,
-} from '../../routes'
+} from '../../routes';
+import { selectIsAuth } from 'store/reducers/auth/selector';
+import { useAppSelector } from 'components/redux';
 
 const AppRouter = () => {
-    const isAuth = true
+    const isAuth = useAppSelector(selectIsAuth);
 
     return isAuth ? (
         <Routes>
@@ -38,7 +39,7 @@ const AppRouter = () => {
                 element={<Navigate to={PUBLIC_PATH.login} replace />}
             />
         </Routes>
-    )
-}
+    );
+};
 
-export default AppRouter
+export default AppRouter;

@@ -1,7 +1,32 @@
-import React from 'react'
+import { Button, Layout, Modal, Row } from 'antd';
+import EventCalendar from 'components/EventCalendar/EventCalendar';
+import { useState } from 'react';
 
 const EventPage = () => {
-    return <div>Event</div>
-}
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
-export default EventPage
+    const handleModalOpen = () => {
+        setModalIsOpen(true);
+    };
+
+    const handleModalClose = () => {
+        setModalIsOpen(false);
+    };
+
+    return (
+        <Layout className="h100">
+            <EventCalendar events={[]} />
+            <Row justify="center">
+                <Button onClick={handleModalOpen}>Добавить событие</Button>
+            </Row>
+            <Modal
+                title="Добавить событие"
+                open={modalIsOpen}
+                onCancel={handleModalClose}
+                footer={null}
+            ></Modal>
+        </Layout>
+    );
+};
+
+export default EventPage;

@@ -1,7 +1,7 @@
-import React from 'react';
 import AppRouter from './components/AppRouter/AppRouter';
-import Navbar from './components/Navbar/Navbar';
+import Navbar from 'components/Navbar/Navbar';
 import { Layout } from 'antd';
+import './App.css';
 
 function App() {
     return (

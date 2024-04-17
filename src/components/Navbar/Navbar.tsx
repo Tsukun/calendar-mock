@@ -1,38 +1,58 @@
-import React from 'react';
-import { Layout, Menu, Row } from 'antd';
 import { useNavigate } from 'react-router';
-import { PUBLIC_PATH } from '../../routes';
+import { Layout, Menu, Row, Space } from 'antd';
+import type { MenuProps } from 'antd';
 
-const Navbar = () => {
+import { selectIsAuth, selectUsername } from 'store/reducers/auth/selector';
+import { resetAuth } from 'store/reducers/auth/slice';
+import { useAppDispatch, useAppSelector } from 'components/redux';
+
+import { PUBLIC_PATH } from '../../routes';
+import styles from './Navbar.module.css';
+
+export const Navbar = () => {
     const navigate = useNavigate();
-    const auth = true;
+    const dispatch = useAppDispatch();
+    const isAuth = useAppSelector(selectIsAuth);
+    const username = useAppSelector(selectUsername);
+
+    const privateItems: MenuProps['items'] = [
+        {
+            key: 'exit_item',
+            onClick: () => dispatch(resetAuth()),
+            label: 'Exit',
+        },
+    ];
+
+    const publicItems: MenuProps['items'] = [
+        {
+            key: 'login_item',
+            label: 'Login',
+            onClick: () => navigate(PUBLIC_PATH.login),
+        },
+    ];
 
     return (
         <Layout.Header>
-            <Row>
-                {auth ? (
-                    <Menu
-                        style={{ flex: 1, justifyContent: 'end' }}
-                        theme="dark"
-                        mode="horizontal"
-                        selectable={false}
-                    >
-                        <div style={{ color: 'white' }}>Tsukune</div>
-                        <Menu.Item onClick={() => console.log('EXIT')}>
-                            Exit
-                        </Menu.Item>
-                    </Menu>
+            <Row justify={'end'} align={'middle'}>
+                {isAuth ? (
+                    <>
+                        <Space direction="vertical" align="center">
+                            <span className={styles.title}>{username}</span>
+                        </Space>
+                        <Menu
+                            theme="dark"
+                            mode="horizontal"
+                            items={privateItems}
+                            selectable={false}
+                        />
+                    </>
                 ) : (
                     <Menu
-                        style={{ flex: 1, justifyContent: 'end' }}
                         theme="dark"
                         mode="horizontal"
                         selectable={false}
-                    >
-                        <Menu.Item onClick={() => navigate(PUBLIC_PATH.login)}>
-                            Login
-                        </Menu.Item>
-                    </Menu>
+                        items={publicItems}
+                    />
                 )}
             </Row>
         </Layout.Header>
