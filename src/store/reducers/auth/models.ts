@@ -1,13 +1,13 @@
 import { RejectError } from 'store/models';
 
-export interface User {
+export interface IUser {
     username: string;
     password: string;
 }
 
 export interface AuthState {
     isAuth: boolean;
-    user: User;
+    user: IUser;
     isPending: boolean;
     error: RejectError;
 }

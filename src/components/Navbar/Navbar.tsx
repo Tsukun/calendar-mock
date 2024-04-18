@@ -2,9 +2,9 @@ import { useNavigate } from 'react-router';
 import { Layout, Menu, Row, Space } from 'antd';
 import type { MenuProps } from 'antd';
 
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { selectIsAuth, selectUsername } from 'store/reducers/auth/selector';
 import { resetAuth } from 'store/reducers/auth/slice';
-import { useAppDispatch, useAppSelector } from 'components/redux';
 
 import { PUBLIC_PATH } from '../../routes';
 import styles from './Navbar.module.css';

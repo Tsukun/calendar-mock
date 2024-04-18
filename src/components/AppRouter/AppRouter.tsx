@@ -1,12 +1,14 @@
 import { Navigate, Route, Routes } from 'react-router';
+
+import { useAppSelector } from 'hooks/redux';
+import { selectIsAuth } from 'store/reducers/auth/selector';
+
 import {
     PRIVATE_PATH,
     PUBLIC_PATH,
     privateRoutes,
     publicRoutes,
 } from '../../routes';
-import { selectIsAuth } from 'store/reducers/auth/selector';
-import { useAppSelector } from 'components/redux';
 
 const AppRouter = () => {
     const isAuth = useAppSelector(selectIsAuth);

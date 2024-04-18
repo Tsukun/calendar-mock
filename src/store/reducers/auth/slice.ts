@@ -1,11 +1,11 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { RejectError } from 'store/models';
-import { AuthState, User } from './models';
+import { AuthState, IUser } from './models';
 import { login } from './asyncAction';
 
 const initialState: AuthState = {
     isAuth: false,
-    user: {} as User,
+    user: {} as IUser,
     error: {} as RejectError,
     isPending: false,
 };
@@ -18,7 +18,7 @@ const authSlice = createSlice({
             state.isAuth = action.payload;
             state.isPending = false;
         },
-        setUser: (state, action: PayloadAction<User>) => {
+        setUser: (state, action: PayloadAction<IUser>) => {
             state.user = action.payload;
         },
         setIsPending: (state, action: PayloadAction<boolean>) => {

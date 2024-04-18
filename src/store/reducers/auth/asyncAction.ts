@@ -2,15 +2,17 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosResponse } from 'axios';
 import { RejectError, ThunkConfig } from 'store/models';
 
-import { User } from './models';
+import { IUser } from './models';
+import UserService from 'api/UserService';
 
-export const login = createAsyncThunk<User, User, ThunkConfig<RejectError>>(
+export const login = createAsyncThunk<IUser, IUser, ThunkConfig<RejectError>>(
     'auth/login',
     async (user, thunkAPI) => {
         const { rejectWithValue } = thunkAPI;
         try {
-            const mockUser = await new Promise<User[]>(async (resolve) => {
-                const response = await axios.get<User[]>('./users.json');
+            const mockUser = await new Promise<IUser[]>(async (resolve) => {
+                const response = await UserService.getUsers();
+
                 setTimeout(() => resolve(response.data), 3000);
             });
 

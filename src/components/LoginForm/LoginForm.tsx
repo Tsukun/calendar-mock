@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
-import { useAppDispatch, useAppSelector } from 'components/redux';
+
+import { rules } from 'utils/rules';
+
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { login } from 'store/reducers/auth/asyncAction';
 import { selectAuth } from 'store/reducers/auth/selector';
-import { rules } from 'utils/rules';
 
 const LoginForm = () => {
     const dispatch = useAppDispatch();
